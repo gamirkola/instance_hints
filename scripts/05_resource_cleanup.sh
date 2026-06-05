@@ -164,7 +164,7 @@ apt_cleanup_and_optional_tools() {
 
   if [[ "$INSTALL_DIAG_TOOLS" == "1" ]]; then
     log "Installazione tool diagnostici opzionali"
-    ${SUDO} DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    ${SUDO} env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
       curl \
       ca-certificates \
       gnupg \
@@ -305,7 +305,7 @@ configure_sysstat() {
 
   if ! dpkg -s sysstat >/dev/null 2>&1; then
     log "sysstat non installato, lo installo"
-    ${SUDO} DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends sysstat
+    ${SUDO} env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends sysstat
   fi
 
   if [[ -f /etc/default/sysstat ]]; then
